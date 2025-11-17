@@ -669,7 +669,7 @@ if __name__ == "__main__":
     # Render sylized QR (modules colored by background image, border/gaps
     # white), save, and validate
     try:
-        bg = np.array(Image.open("images/rit_cis.png").convert("RGB"))
+        bg = np.array(Image.open("images/rit_tiger.png").convert("RGB"))
         qr.save_png("images/rit_cis_qr_fancy.png", background=bg)
 
         # Validate the stylized image (if OpenCV available)
