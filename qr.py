@@ -658,7 +658,7 @@ if __name__ == "__main__":
     qr = make_qr(url, box_size=20, border=4, ecc="H")
 
     # Render plain QR, save, and validate
-    qr.save_png("images/rit_cis_qr_plain.png")
+    qr.save_png("images/rit_qr_plain.png")
     try:
         print("Plain QR valid?", qr.validate())  # uses internal rendering
     except RuntimeError as e:
@@ -670,7 +670,7 @@ if __name__ == "__main__":
     # white), save, and validate
     try:
         bg = np.array(Image.open("images/rit_tiger.png").convert("RGB"))
-        qr.save_png("images/rit_cis_qr_fancy.png", background=bg)
+        qr.save_png("images/rit_qr_fancy.png", background=bg)
 
         # Validate the stylized image (if OpenCV available)
         try:
@@ -681,3 +681,4 @@ if __name__ == "__main__":
             print("Colored-modules validation skipped (no OpenCV):", e)
     except FileNotFoundError as e:
         print("Background image not found/could not be opened:", e)
+
