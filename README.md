@@ -40,8 +40,8 @@ Install the basic dependencies:
 ```bash
 pip install numpy Pillow qrcode
 ```
+---
 
-&nbsp;
 ## Examples
 
 ### Example #1 - Generate and save a plain QR code
@@ -134,7 +134,8 @@ html_tag = f'<img src="data:image/png;base64,{b64}" />'
 print(html_tag)
 ```
 
-&nbsp;
+---
+
 ## License
 
 This project is licensed under the MIT License.  
@@ -142,7 +143,8 @@ Copyright (c) 2025 Carl Salvaggio.
 
 See the [LICENSE](LICENSE) file for details.
 
-&nbsp;
+---
+
 ## Contact
 
 **Carl Salvaggio, Ph.D.**  
