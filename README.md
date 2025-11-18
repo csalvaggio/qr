@@ -44,14 +44,14 @@ pip install numpy Pillow qrcode
 &nbsp;
 ## Examples
 
-###Example #1 - Generate and save a plain QR code
+### Example #1 - Generate and save a plain QR code
 
 ```python
 from qr import make_qr
 
 # Simple helper: Go straight from data -> QRCodeImage
 qr = make_qr(
-    "https://www.rit.edu/science/chester-f-carlson-center-imaging-science",
+    "https://www.rit.edu/",
     box_size=12,        # pixels per module
     border=4,           # modules of quiet zone
     ecc="Q",            # ~25% error correction
@@ -62,7 +62,7 @@ arr = qr.render_array()
 print(arr.shape)        # (height, width, 3)
 
 # Save as a PNG file
-qr.save_png("images/rit_cis_qr_plain.png")
+qr.save_png("images/rit_qr_plain.png")
 ```
 
 ### Example #2 - Textured modules + validation
@@ -77,7 +77,7 @@ from qr import QRSpec, QRCodeImage
 
 # Define an immutable QR specification
 spec = QRSpec(
-    "https://www.rit.edu/science/chester-f-carlson-center-imaging-science",
+    "https://www.rit.edu/",
     box_size=16,
     border=4,
     ecc="H"        # ~30% error correction (highest rate)
@@ -92,7 +92,7 @@ background = iio.imread(bg_path)        # Shape (H, W, 3) or (H, W)
 
 # Save a QR where only the modules are textured by `background`
 qr.save_png(
-    "images/rit_cis_qr_fancy.png",
+    "images/rit_qr_fancy.png",
     background=background,
     bg=(255, 255, 255)        # Quiet zone and gaps stay white
 )
@@ -116,8 +116,7 @@ except RuntimeError as exc:
 ```python
 from qr import make_qr
 
-png_bytes = make_qr(
-    "https://www.rit.edu/science/chester-f-carlson-center-imaging-science").to_png_bytes()
+png_bytes = make_qr("https://www.rit.edu/").to_png_bytes()
 
 # ... Return "png_bytes" in a web API response, attach to email, etc.
 ```
@@ -128,9 +127,7 @@ png_bytes = make_qr(
 import base64
 from qr import make_qr
 
-png_bytes = make_qr(
-    "https://www.rit.edu/science/chester-f-carlson-center-imaging-science",
-    box_size=10).to_png_bytes()
+png_bytes = make_qr("https://www.rit.edu/", box_size=10).to_png_bytes()
 b64 = base64.b64encode(png_bytes).decode("ascii")
 
 html_tag = f'<img src="data:image/png;base64,{b64}" />'
