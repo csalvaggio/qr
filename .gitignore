@@ -1,5 +1,5 @@
 *.pyc
 __pycache__
 
-images/rit_cis_qr_plain.png
-images/rit_cis_qr_fancy.png
+images/rit_qr_plain.png
+images/rit_qr_fancy.png
