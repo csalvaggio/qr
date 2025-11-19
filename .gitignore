@@ -1,5 +1,8 @@
 *.pyc
 __pycache__
 
+*SAVE
+*ORIG
+
 images/rit_qr_plain.png
 images/rit_qr_fancy.png
