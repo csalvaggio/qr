@@ -280,7 +280,7 @@ from qr import make_qr
 
 payload_text = "https://www.rit.edu/science/chester-f-carlson-center-imaging-science"
 
-png_bytes = make_qr(payload_text).to_png_bytes()
+png_bytes = make_qr(payload_text, box_size=20, border=4, ecc="H").to_png_bytes()
 
 print(png_bytes)
 ```
@@ -296,7 +296,9 @@ b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x01\xc2\x00\x00\x01\xc2\x08\x02\x0
 import base64
 from qr import make_qr
 
-png_bytes = make_qr("https://www.rit.edu/", box_size=10).to_png_bytes()
+payload_text = "https://www.rit.edu/science/chester-f-carlson-center-imaging-science"
+
+png_bytes = make_qr(payload_text, box_size=20, border=4, ecc="H").to_png_bytes()
 b64 = base64.b64encode(png_bytes).decode("ascii")
 
 html_tag = f'<img src="data:image/png;base64,{b64}" />'
