@@ -269,7 +269,7 @@ except RuntimeError as e:
 <img src="images/rit_qr_textured.png" width="300">
 
 &nbsp;
-### Miscellaneous "one-liner" approaches:
+### Miscellaneous (one-liner) approaches:
 
 ---
 
@@ -284,6 +284,8 @@ png_bytes = make_qr(payload_text).to_png_bytes()
 
 print(png_bytes)
 ```
+
+Output:
 ```
 b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x01\xc2\x00\x00\x01\xc2\x08\x02\x00\x00\x00\xf3z^\x12\x00\x00\t} ...
 ```
@@ -301,6 +303,8 @@ html_tag = f'<img src="data:image/png;base64,{b64}" />'
 
 print(html_tag)
 ```
+
+Output:
 ```
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKCAIAAAD0S4FSAAAFoklEQVR4nO3dwY5aORRF0RDl/3+ZTGtklfRkfL1Za9pqCghbnhz5vd7v9x+g6O/pNwDsIm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q9a/U3/49Xqd+tObvN/vxX998nnXr7y273t+8q7Wvu23sY/TG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbso6t1tZOrXzWTi3A9i3e1q+8by335JW/7bfxhNMbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuyhq7W1m68P2ztycbr1F5q3y7tid5v4wmnN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZF25WrvRk+XZzE3bqVvc+D2nN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZFmtfci+p3w+YT3W5vSGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oasK1drN26tZt6ItnbjfWkz39UpTm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8gaulrbt+I6Zd9TPr/tSZ2938Y+Tm/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8h63bhb6rlx0zbzmaf85PSGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oasY6u1fXeA3XgXV28fduo9n9rhrZ36V3B6Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlD1pVPCN23Adr3yutPtG/jdeOGb+3JJ+rt0tac3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekDX0rrUnTi3PZn6TM58uunZqw3fqjrd9nN6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pA19K61U8uztZlLrBt3aWunbo/r3Uvn9IYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhqxjd62dMvOOt1Pv6sZvY+YvduZ7dnpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPW0CeEnto8zbyZbOYn2mfm4m3mLm3N6Q1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlDnxA6cyH0bQuwfX93/W2cWp49MfMX6/SGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oasoau1fSufJ7ulfe9q3+LtxmePzrw9buYqcc3pDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWUNXa0/M3DztM3OH98S+ld7MG+D2cXpDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUPWsdXazCdX7vt/Z949dsrMu/R6nN6QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pB1bLXWWxedWmKduh9u5ud9Yt8q8dR20OkNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1ZQ58QOvOGsH0LsJnPxOzt4b6N0xuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7KGrtbWvm0vdWo9to/3/BlOb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyLpytcZPvRvRZj5t80ZOb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyLJa+5B927JTT/k89WTStRtvRNvH6Q1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVlXrtbctvV7M1dcp3ZpvWetrjm9IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwha+hqrbcfOnUj2j773vP6lfct3np3vDm9IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwh6+XeMqhyekOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWfKGLHlDlrwhS96QJW/IkjdkyRuy5A1Z8oYseUOWvCFL3pAlb8iSN2TJG7LkDVnyhix5Q5a8IUvekCVvyJI3ZMkbsuQNWf8Bf8yFuRNcVXYAAAAASUVORK5CYII=" />
 ```
