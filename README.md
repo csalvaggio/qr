@@ -64,6 +64,18 @@ Properties:
 
 - `ecc_level` – Integer ECC constant for the underlying `qrcode` library.
 
+NOTE: The ECC levels are defined in the `qrcode` library as
+```
+"L" is ~7% error correction
+"M" is ~15% (default)
+"Q" is ~25%
+"H" is ~30%
+```
+
+QR codes use Reed–Solomon (RS) coding. For each error-correction level, a certain fraction of the total codewords (the little 8-bit blocks inside the QR code) are devoted to parity/check symbols rather than payload data.
+
+This percent is the ratio of error-correction bytes (RS parity blocks) to the total number of data bytes in that symbol version.
+
 ---
 
 ### `QRCodeImage`
