@@ -834,18 +834,18 @@ class QRCodeImage:
         path = Path(path)
 
         if overlay is not None:
-            comp = self.render_with_centered_overlay(
+            composite = self.render_with_centered_overlay(
                 overlay,
                 relative_size=relative_size,
                 fg=fg,
                 bg=bg,
             )
-            Image.fromarray(comp, mode="RGB").save(path, format="PNG")
+            Image.fromarray(composite, mode="RGB").save(path, format="PNG")
             return
 
         if texture is not None:
-            comp = self.render_with_texture(texture, bg=bg)
-            Image.fromarray(comp, mode="RGB").save(path, format="PNG")
+            composite = self.render_with_texture(texture, bg=bg)
+            Image.fromarray(composite, mode="RGB").save(path, format="PNG")
             return
 
         # Classic foreground/background QR rendering
@@ -907,9 +907,10 @@ def save_qr_png(
     texture: Optional[ImageLike] = None,
     overlay: Optional[ImageLike] = None,
     relative_size: float = 0.25,
-) -> None:
+) -> bool | None:
     """
-    Generate and save a QR PNG in any supported rendering mode.
+    Generates, saves, and validates (if possible) a QR PNG in any
+    supported rendering mode.
 
     This is a convenience helper that constructs a QRCodeImage from
     `data` and saves it to `path` using one of the available rendering
@@ -949,9 +950,10 @@ def save_qr_png(
 
     Returns
     -------
-    None
-        This function does not return anything. The PNG file is written
-        to `path`.
+    bool | None
+        This function returns a boolean indicating if the generated QR
+        code has passed a validity test if OpenCV is available, it returns
+        None otherwise.
     """
     qr = make_qr(data, box_size=box_size, border=border, ecc=ecc)
     qr.save_png(
@@ -962,6 +964,24 @@ def save_qr_png(
         overlay=overlay,
         relative_size=relative_size,
     )
+
+    # Validate (if OpenCV available)
+    if texture is not None:
+        composite = qr.render_with_texture(texture)
+    elif overlay is not None:
+        composite = \
+            qr.render_with_centered_overlay(overlay,
+                                            relative_size=relative_size)
+    else:
+        composite = None
+
+    try:
+        is_valid = qr.validate(image=composite)
+    except:
+        is_valid = None
+
+    return is_valid
+
 
 
 if __name__ == "__main__":
@@ -981,8 +1001,8 @@ if __name__ == "__main__":
         qr.save_png("images/rit_qr_textured.png", texture=texture)
         # Validate (if OpenCV available)
         try:
-            comp = qr.render_with_texture(texture)
-            is_valid = qr.validate(image=comp)
+            composite = qr.render_with_texture(texture)
+            is_valid = qr.validate(image=composite)
             print("Textured QR valid?", is_valid)
         except RuntimeError as e:
             print("Textured QR validation skipped (no OpenCV):", e)
@@ -1000,10 +1020,10 @@ if __name__ == "__main__":
         )
         # Validate (if OpenCV available)
         try:
-            comp = qr.render_with_centered_overlay(
+            composite = qr.render_with_centered_overlay(
                 overlay, relative_size=relative_size
             )
-            is_valid = qr.validate(image=comp)
+            is_valid = qr.validate(image=composite)
             print("Overlayed QR valid?", is_valid)
         except RuntimeError as e:
             print("Overlayed QR validation skipped (no OpenCV):", e)

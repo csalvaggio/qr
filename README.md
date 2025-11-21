@@ -72,7 +72,7 @@ NOTE: The ECC levels are defined in the `qrcode` library as
 "H" is ~30%
 ```
 
-QR codes use Reed–Solomon (RS) coding. For each error-correction level, a certain fraction of the total codewords (the little 8-bit blocks inside the QR code) are devoted to parity/check symbols rather than payload data.
+QR codes use [Reed–Solomon](https://en.wikipedia.org/wiki/Reed–Solomon_error_correction) (RS) coding. For each error-correction level, a certain fraction of the total codewords (the little 8-bit blocks inside the QR code) are devoted to parity/check symbols rather than payload data.
 
 This percent is the ratio of error-correction bytes (RS parity blocks) to the total number of data bytes in that symbol version.
 
@@ -117,7 +117,7 @@ make_qr(
 ```
 
 ```python
-save_qr_png(
+is_valid = save_qr_png(
     path: str | Path,
     data: str,
     *,
@@ -129,7 +129,7 @@ save_qr_png(
     texture: ImageLike | None = None,
     overlay: ImageLike | None = None,
     relative_size: float = 0.25,
-) -> None
+) -> bool | None
 ```
 
 ---
@@ -164,22 +164,24 @@ pip install opencv-python
 
 ---
 
-##### Example #1 - Generate and save a plain QR code
+##### Example #1 - Generate, save, and validate a plain QR code
 
 ```python
 from qr import save_qr_png
 
 payload_text = "https://www.rit.edu/science/chester-f-carlson-center-imaging-science"
 
-save_qr_png("images/rit_qr_plain.png",
-            payload_text,
-            box_size=20,
-            border=4,
-            ecc="H")
+is_valid = save_qr_png("images/rit_qr_plain.png",
+                       payload_text,
+                       box_size=20,
+                       border=4,
+                       ecc="H")
+
+print(is_valid)
 ```
 <img src="images/rit_qr_plain.png" width="300">
 
-##### Example #2 - Generate and save a textured-modules QR code
+##### Example #2 - Generate, save, and validate a textured-modules QR code
 
 ```python
 from PIL import Image
@@ -188,16 +190,18 @@ from qr import save_qr_png
 texture = Image.open("images/rit_tiger.png")
 payload_text = "https://www.rit.edu/science/chester-f-carlson-center-imaging-science"
 
-save_qr_png("rit_qr_textured.png",
-            payload_text,
-            box_size=20,
-            border=4,
-            ecc="H",
-            texture=texture)
+is_valid = save_qr_png("rit_qr_textured.png",
+                       payload_text,
+                       box_size=20,
+                       border=4,
+                       ecc="H",
+                       texture=texture)
+
+print(is_valid)
 ```
 <img src="images/rit_qr_textured.png" width="300">
 
-##### Example #3 - Generate and save a QR code with a central overlay
+##### Example #3 - Generate, save, and validate a QR code with a central overlay
 
 ```python
 from PIL import Image
@@ -206,13 +210,15 @@ from qr import save_qr_png
 overlay = Image.open("images/rit_tiger.png")
 payload_text = "https://www.rit.edu/science/chester-f-carlson-center-imaging-science"
 
-save_qr_png("rit_qr_textured.png",
-            payload_text,
-            box_size=20,
-            border=4,
-            ecc="H",
-            overlay=overlay,
-            relative_size=0.375)
+is_valid = save_qr_png("rit_qr_textured.png",
+                       payload_text,
+                       box_size=20,
+                       border=4,
+                       ecc="H",
+                       overlay=overlay,
+                       relative_size=0.375)
+
+print(is_valid)
 ```
 <img src="images/rit_qr_overlay.png" width="300">
 
@@ -340,7 +346,7 @@ See the [LICENSE](LICENSE) file for details.
 **Carl Salvaggio, Ph.D.**  
 Email: carl.salvaggio@rit.edu
 
-Chester F. Carlson Center for Imaging Science  
-Rochester Institute of Technology  
+[Chester F. Carlson Center for Imaging Science](https://www.rit.edu/science/chester-f-carlson-center-imaging-science)  
+[Rochester Institute of Technology](https://www.rit.edu)  
 Rochester, New York 14623  
 United States
