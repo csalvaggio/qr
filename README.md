@@ -15,7 +15,8 @@ The core premise on which this is built is to **separate QR structure from QR re
 
 - The underlying QR module matrix is generated once at initialization and reused for all rendering operations.
 - The module intentionally abstracts away most of the `qrcode` library’s rendering in favor of explicit pixel-based control.
-- All image normalization is funneled through `_normalize_to_image_array`, which accepts NumPy arrays and PIL `Image` objects in grayscale, RGB, or RGBA form.
+- All image-normalization operations are routed through `_normalize_to_image_array`, which supports NumPy arrays and PIL Image objects in grayscale, RGB, and RGBA formats.
+
 
 ---
 
